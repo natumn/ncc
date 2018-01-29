@@ -1,0 +1,6 @@
+# Rust build file.
+/target/
+**/*.rs.bk
+
+# Editor set up.
+.vscode/
