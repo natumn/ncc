@@ -5,3 +5,5 @@ authors = ["natumn <natsume.pcuse75@gmail.com>"]
 
 [dependencies]
 clap = "2.29.2"
+nom = "3.2.1"
+llvm-sys = "50"
