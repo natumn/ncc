@@ -33,7 +33,7 @@ pub enum Expression {
     CallExpr(String, Vec<Expression>),
 }
 
-pub type ParsingResult = Result<Vec<ASTNode>, Vex<Token>, String>;
+pub type ParsingResult = Result<Vec<ASTNode>, Vec<Token>, String>;
 
 enum PartParsingResult<T> {
     Success(T, Vec<Token>),

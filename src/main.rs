@@ -1,3 +1,5 @@
+mod driver;
+
 fn main() {
-    run_compile();
+    driver::run_compiler();
 }
