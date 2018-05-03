@@ -1,6 +1,6 @@
-# Rust build file.
-/target/
-**/*.rs.bk
+# vendor
+vendor/
+Gopkg.lock
 
 # Editor set up.
 .vscode/
