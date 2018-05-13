@@ -3,6 +3,7 @@ package driver
 import (
 	"go/ast"
 
+	"github.com/natumn/goruda/lexer"
 	"github.com/natumn/goruda/parser"
 	// "go/token"
 	"os"
@@ -10,8 +11,11 @@ import (
 )
 
 type Driver struct {
-	Pkgs map[string]*ast.Package
-	Opts *Options
+	Options
+	Lexer         lexer.Lexer
+	Parser        parser.Parser
+	PT            parser.ParseTree
+	CodeGenerator codegen.CodeGenerator
 }
 
 type Options struct {
@@ -24,12 +28,16 @@ func (d *Driver) ParseOptions() {
 	// f := flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 }
 
-func (d *Driver) ParsePkgs(path string) (err error) {
-	d.Pkgs, err = parser.ParsePkgs(path)
-	if err != nil {
-		return err
+func (d *Driver) ParseFiles(filepaths []*string) (err error) {
+	for _, filepath := range filepaths {
+		parser.ParseFile(filepath)
+		if err != nil {
+			return err
+		}
 	}
 	return nil
 }
 
-func (d *Driver) Codegen()
+func (d *Driver) Codegen() {
+
+}

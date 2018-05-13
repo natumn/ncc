@@ -1,16 +1,16 @@
 package parser
 
 import (
-	"go/ast"
-	"go/parser"
-	"go/token"
+	"os"
 )
 
-func ParsePkgs(path string) (map[string]*ast.Package, error) {
-	fset := token.NewFileSet()
-	ast, err := parser.ParseDir(fset, path, nil, 0)
+type AST struct {
+}
+
+func ParseFile(filepath string) (map[string]*AST, error) {
+	f, err := os.Open(filepath)
 	if err != nil {
-		return ast, err
+		return nil, err
 	}
-	return ast, err
+
 }

@@ -24,14 +24,20 @@ func (c *Compiler) Init() {
 }
 
 func (c *Compiler) Run() {
-	driver := driver.Driver{}
-	driver.ParseOptions()
-	pkgAst, err := driver.ParsePkgs()
-	if err != nil {
+	d := driver.Driver{}
+	d.Init()
+	d.ParseOptions()
 
+	// Phase1: transfrom source code into parse tree.
+	pt, err := d.ParseFiles(filenames)
+	if err != nil {
+		panic(err)
 	}
-	evmByteCode, err := driver.Codegen(pkgAst)
+	// Phase2: type check.
+	d.TypeCheck(pt)
+	// Phase : assigned IR code generate.
+	ir, err := d.Codegen(pt)
 	if err != nil {
-
+		panic(err)
 	}
 }
