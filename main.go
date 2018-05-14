@@ -33,8 +33,14 @@ func (c *Compiler) Run() {
 	if err != nil {
 		panic(err)
 	}
-	// Phase2: type check.
+	// Phase2: type check and type inference.
 	d.TypeCheck(pt)
+	// Phase3: K Normal
+
+	// Phase4: alpha conversion
+
+	// Phase5:
+
 	// Phase : assigned IR code generate.
 	ir, err := d.Codegen(pt)
 	if err != nil {
